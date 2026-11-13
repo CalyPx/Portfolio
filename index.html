@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rohit Poudel, software developer and AI/ML engineer</title>
+  <meta name="description" content="Rohit Poudel builds software and machine-learning systems for real problems in Nepal: civic tech, applied AI and full-stack products. Selected work, results and contact.">
+  <meta name="theme-color" content="#eeece5">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rohit Poudel, software developer and AI/ML engineer">
+  <meta property="og:description" content="Software and machine-learning systems for real problems in Nepal.">
+  <meta property="og:image" content="/covers/quake.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Person","name":"Rohit Poudel","jobTitle":"Software developer and AI/ML engineer","address":{"@type":"PostalAddress","addressLocality":"Kathmandu","addressCountry":"NP"},"sameAs":["https://github.com/CalyPx","https://www.linkedin.com/in/rohit-poudel-633364310/"]}
+  </script>
+  <script>
+    // Decide before first paint whether the intro plays: at most once a week, never with reduced
+    // motion, and never for someone arriving on a case-study link.
+    (function (d) {
+      d.classList.add('js')
+      var last = 0
+      try { last = +localStorage.getItem('rp-intro') || 0 } catch (e) {}
+      var recent = Date.now() - last < 7 * 864e5
+      var deep = /^\/work\//.test(location.pathname) || location.hash.indexOf('#case-') === 0
+      if (!recent && !deep && !matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('intro-on')
+    })(document.documentElement)
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to content</a>
+
+  <div class="intro">
+    <p class="intro__meta"><span>Rohit Poudel</span><span>Selected work, 2026</span></p>
+    <div class="intro__stage">
+      <p class="intro__name" aria-hidden="true"><span>Rohit Poudel</span></p>
+      <div class="intro__deck"></div>
+    </div>
+    <div class="intro__foot">
+      <p class="intro__count"><b data-count>00</b><span data-count-name>Loading the work</span></p>
+      <div class="intro__acts">
+        <button class="intro__btn intro__btn--lime" type="button" data-enter="sound">Enter with sound</button>
+        <button class="intro__btn" type="button" data-enter="quiet">Skip intro</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="bar">
+    <a class="bar__mark" href="/" data-home><i aria-hidden="true"></i>Rohit Poudel</a>
+    <nav class="bar__nav" id="menu" aria-label="Main">
+      <span class="bar__ind" aria-hidden="true"></span>
+      <a href="#work">Work</a>
+      <a href="#results">Results</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="snd">
+      <button class="snd__btn" type="button" aria-expanded="false" aria-controls="snd-panel" title="Sound settings">
+        <span class="snd__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="snd__word">Sound off</span>
+      </button>
+      <div class="snd__panel" id="snd-panel" hidden data-lenis-prevent>
+        <label class="sw"><span>Sound</span><input type="checkbox" data-snd="on"><i aria-hidden="true"></i></label>
+        <label class="sw"><span>Ambient</span><input type="checkbox" data-snd="ambient"><i aria-hidden="true"></i></label>
+        <label class="snd__vol"><span>Volume</span><input type="range" min="0" max="100" value="60" data-snd="volume"></label>
+        <p class="snd__note">Made live in your browser. It stays off until you turn it on.</p>
+      </div>
+    </div>
+    <button class="bar__menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <canvas class="gl" data-cur="Drag" aria-hidden="true"></canvas>
+      <h1 class="hero__name">Rohit Poudel</h1>
+      <ul class="hero__covers" aria-label="Projects"></ul>
+      <div class="hero__foot">
+        <div class="hero__say" data-in>
+          <p class="meta">Hi, I’m Rohit. Developer and AI/ML engineer.</p>
+          <p class="hero__lede">I build software and machine-learning models for problems I see around me in Nepal.</p>
+        </div>
+        <p class="hero__hint" data-in><span class="hero__hand" aria-hidden="true"><i></i></span><span class="for-fine">Drag to turn. Pull a card down to throw it.</span><span class="for-touch">Swipe sideways to turn. Tap a cover to read it.</span></p>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="head">
+        <h2 class="head__title" data-lines>Selected work</h2>
+        <p class="head__note" data-rise>Seven builds, from a trained model with a measured result to agent systems still in progress. Open one for the full case study.</p>
+      </div>
+      <ol class="strips"></ol>
+    </section>
+
+    <section class="results" id="results">
+      <div class="head">
+        <h2 class="head__title" data-lines>Judged, and placed</h2>
+        <p class="head__note" data-rise>Two awards, two runner-up places, one finalist place and one selection still to come. Labelled for what each one is.</p>
+      </div>
+      <ol class="tiles">
+        <li class="tile">
+          <p class="tile__top"><span>Award</span><span>2026</span></p>
+          <p class="tile__big">1st</p>
+          <h3 class="tile__what">Track winner</h3>
+          <p class="tile__where">MBMC IdeaX, a national-level hackathon</p>
+          <p class="tile__more">Won the Smart Urban Transportation and Road Safety track out of 116 teams, with Crash Capsule. <a class="tile__go" href="/work/crash-capsule/" data-case="crash-capsule">Read the Crash Capsule case study</a></p>
+        </li>
+        <li class="tile">
+          <p class="tile__top"><span>Runner-up</span><span>2026</span></p>
+          <p class="tile__big">2nd</p>
+          <h3 class="tile__what">Runner-up</h3>
+          <p class="tile__where">CivicCode Hackathon, by Think Big</p>
+          <p class="tile__more">Second place with Sunuwa, the civic-complaint router. <a class="tile__go" href="/work/sunuwa/" data-case="sunuwa">Read the Sunuwa case study</a></p>
+        </li>
+        <li class="tile">
+          <p class="tile__top"><span>Runner-up</span><span></span></p>
+          <p class="tile__big">2nd</p>
+          <h3 class="tile__what">Runner-up</h3>
+          <p class="tile__where">code4impact 2.0</p>
+          <p class="tile__more">Second place.</p>
+        </li>
+        <li class="tile">
+          <p class="tile__top"><span>Finalist</span><span>2026</span></p>
+          <p class="tile__big">Top 3</p>
+          <h3 class="tile__what">Top three teams</h3>
+          <p class="tile__where">TSN Agentic AI Hackathon</p>
+          <p class="tile__more">A finalist place with Mul, not a win. It led to the Startup Summit pitch. <a class="tile__go" href="/work/mul/" data-case="mul">Read the Mul case study</a></p>
+        </li>
+        <li class="tile">
+          <p class="tile__top"><span>Award</span><span></span></p>
+          <p class="tile__big tile__big--two">Best<br>presenter</p>
+          <h3 class="tile__what vh">Best presenter</h3>
+          <p class="tile__where">5th Grand Chief of Army Staff Science Exhibition</p>
+          <p class="tile__more">For an IoT smart residence, presented among more than 60 schools and later shown at Nepal Army headquarters.</p>
+        </li>
+        <li class="tile tile--next">
+          <p class="tile__top"><span>Selection, upcoming</span><span>Dec 2026</span></p>
+          <p class="tile__big">Pitch</p>
+          <h3 class="tile__what">Selected to pitch</h3>
+          <p class="tile__where">Startup Summit</p>
+          <p class="tile__more">Chosen to pitch Mul. It has not happened yet. <a class="tile__go" href="/work/mul/" data-case="mul">Read the Mul case study</a></p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about__lead">
+        <h2 class="meta about__kicker" data-rise>About</h2>
+        <p class="about__text" data-ink>I build software and machine-learning systems. The problems I pick tend to live off the screen: a spring drying up, a complaint nobody answers, a building that may not survive the next earthquake. I like owning the whole path, from the data to the interface people use.</p>
+      </div>
+
+      <div class="about__grid">
+        <dl class="facts">
+          <div data-rise><dt>Based in</dt><dd>Kathmandu, Nepal</dd></div>
+          <div data-rise><dt>Kathmandu time</dt><dd data-clock>UTC+5:45</dd></div>
+          <div data-rise><dt>Studying</dt><dd>BSc Computer Science and IT, Prime College</dd></div>
+          <div data-rise><dt>Also</dt><dd>AI/ML Microdegree, Code for Change Pokhara with AI Community Nepal and Gandaki University, 2026</dd></div>
+        </dl>
+        <div class="kit">
+          <div class="kit__col" data-rise>
+            <h3 class="meta">Engineering</h3>
+            <p>Next.js, React and TypeScript on the front. FastAPI, Flask and Node.js behind it, speaking REST.</p>
+          </div>
+          <div class="kit__col" data-rise>
+            <h3 class="meta">AI and machine learning</h3>
+            <p>Python, scikit-learn and XGBoost for models. LLMs, agentic workflows and Sentence Transformers for language.</p>
+          </div>
+          <div class="kit__col" data-rise>
+            <h3 class="meta">Data and infrastructure</h3>
+            <p>Postgres, MongoDB and Supabase. Docker and Git. Open-Meteo and Sentinel-2 data, plus ESP32 and Bluetooth LE when it has to touch hardware.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticker" aria-label="Everything else I have built">
+        <div class="ticker__head">
+          <button class="ticker__pause" type="button" aria-pressed="false">Pause</button>
+        </div>
+        <div class="ticker__row">
+          <a class="tick" href="https://github.com/CalyPx/Harvo"><b>Harvo</b><i>Farm marketplace</i></a>
+          <a class="tick" href="https://thelukla.vercel.app"><b>The Lukla</b><i>Client site, live</i></a>
+          <a class="tick" href="https://sahayatri-nepal.vercel.app"><b>Sahayatri Nepal</b><i>Client site</i></a>
+          <a class="tick" href="https://github.com/CalyPx/fitcoach"><b>FitCoach</b><i>Web app</i></a>
+          <span class="tick"><b>IoT Smart Residence</b><i>Arduino, ESP</i></span>
+        </div>
+        <div class="ticker__row">
+          <a class="tick" href="https://github.com/CalyPx/RAG-CHATBOT"><b>RAG Chatbot</b><i>LLM</i></a>
+          <a class="tick" href="https://github.com/CalyPx/RAG-PDF-CHAT"><b>RAG PDF Chat</b><i>LLM</i></a>
+          <button class="tick" type="button" data-game="bomb"><b>Bomb Dodger</b><i>Play it</i></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="play" id="play" aria-labelledby="play-title">
+      <div class="head">
+        <h2 class="head__title" id="play-title" data-lines>Two things to play</h2>
+        <p class="head__note" data-rise>One runs my earthquake model. The other is the first game I ever wrote, rebuilt for the browser.</p>
+      </div>
+      <div class="play__row">
+        <button class="arcade arcade--quake" type="button" data-game="survive" data-rise>
+          <span class="arcade__art arcade__art--quake" aria-hidden="true">
+            <svg viewBox="0 0 200 240">
+              <g class="aq-house">
+                <polygon class="aq-roof" points="46,96 100,62 154,96" />
+                <rect class="aq-wall" x="56" y="96" width="88" height="40" />
+                <rect class="aq-wall" x="56" y="136" width="88" height="40" />
+                <rect class="aq-win" x="68" y="106" width="16" height="14" /><rect class="aq-win" x="92" y="106" width="16" height="14" /><rect class="aq-win" x="116" y="106" width="16" height="14" />
+                <rect class="aq-win" x="68" y="146" width="16" height="14" /><rect class="aq-win" x="116" y="146" width="16" height="14" />
+                <rect class="aq-door" x="92" y="148" width="16" height="28" />
+                <rect class="aq-found" x="50" y="176" width="100" height="10" />
+                <polyline class="aq-crack" points="76,98 82,112 78,122 86,134" />
+                <polyline class="aq-crack aq-crack--2" points="128,138 122,150 128,160 122,174" />
+              </g>
+              <rect class="aq-ground" x="0" y="186" width="200" height="8" />
+              <polyline class="aq-trace" points="0,214 30,214 38,206 46,222 54,200 62,228 70,204 78,222 86,210 94,216 102,212 200,214" />
+            </svg>
+            <span class="aq-grade">Grade ?</span>
+          </span>
+          <span class="arcade__text">
+            <span class="meta">QuakeSafe Nepal · real predictions</span>
+            <b>Will it survive?</b>
+            <span>Build a house, shake it, and see the damage grade my XGBoost model predicts.</span>
+            <span class="btn">Build and shake</span>
+          </span>
+        </button>
+        <button class="arcade arcade--bomb" type="button" data-game="bomb" data-rise>
+          <span class="arcade__art arcade__art--bomb" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i class="me"></i></span>
+          <span class="arcade__text">
+            <span class="meta">Python, 2025 · now in the browser</span>
+            <b>Bomb Dodger</b>
+            <span>Dodge the bombs falling from above and flying from the side. Every miss is a point.</span>
+            <span class="btn">Play</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <p class="meta" data-rise>Contact</p>
+      <h2 class="contact__title" data-lines>Have a problem worth solving?</h2>
+      <p class="contact__open" data-rise><i aria-hidden="true"></i>Open to internships, freelance work and collaborations.</p>
+      <button class="contact__mail" type="button" data-copy="rohitpoudel020@gmail.com" data-rise>
+        <span class="contact__addr">rohitpoudel020@gmail.com</span>
+        <span class="contact__state" aria-live="polite"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5V2h9v9h-3M2 5h9v9H2z"/></svg><span>Click to copy</span></span>
+      </button>
+      <div class="contact__acts" data-rise>
+        <a class="btn btn--lime" href="mailto:rohitpoudel020@gmail.com?subject=Hello%20Rohit" data-magnet>Write an email</a>
+        <a class="btn btn--ghost" href="https://github.com/CalyPx" target="_blank" rel="noopener" data-magnet>GitHub</a>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/rohit-poudel-633364310/" target="_blank" rel="noopener" data-magnet>LinkedIn</a>
+      </div>
+      <footer class="contact__foot">
+        <p>© 2026 · Built by Rohit Poudel, made with love</p>
+        <p class="for-fine">Press <span class="kbd">Ctrl K</span> to jump anywhere</p>
+        <a class="und" href="#top">Back to top</a>
+      </footer>
+    </section>
+  </main>
+
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-name" hidden>
+    <div class="sheet__inner">
+      <div class="sheet__art" data-lenis-prevent><img class="sheet__cover" alt="" width="1200" height="1500"></div>
+      <article class="sheet__body" data-lenis-prevent>
+        <div class="sheet__top">
+          <p class="meta sheet__no"></p>
+          <button class="btn btn--line sheet__close" type="button">Close</button>
+        </div>
+        <h2 class="sheet__name" id="sheet-name"></h2>
+        <p class="sheet__tag"></p>
+        <div class="sheet__head">
+          <ul class="chips sheet__chips"></ul>
+          <p class="sheet__links"></p>
+        </div>
+        <dl class="study"></dl>
+        <figure class="sheet__shot"></figure>
+        <button class="sheet__next" type="button" data-step="1"><span class="meta">Next case study</span><b></b></button>
+      </article>
+    </div>
+  </div>
+
+  <div class="game" id="game-survive" role="dialog" aria-modal="true" aria-labelledby="survive-title" hidden>
+    <div class="game__box game__box--wide" data-lenis-prevent>
+      <div class="game__top">
+        <p class="meta">QuakeSafe Nepal · predictions from the trained model</p>
+        <button class="btn btn--line game__close" type="button">Close</button>
+      </div>
+      <h2 class="game__title" id="survive-title">Will it survive?</h2>
+      <p class="game__lede">Build a house, then shake it. The damage grade comes from my XGBoost model, trained on 260,601 buildings surveyed after the 2015 Gorkha earthquake.</p>
+      <div class="sv">
+        <div class="sv__stage">
+          <svg class="sv__house" viewBox="0 0 400 420" role="img" aria-label="The house you are building"></svg>
+          <svg class="sv__seis" viewBox="0 0 400 60" aria-hidden="true"><polyline points="" /></svg>
+        </div>
+        <form class="sv__form">
+          <fieldset class="seg"><legend>Where it stands</legend>
+            <label><input type="radio" name="region" value="26" checked><span>Region 26<small>lightest hit</small></span></label>
+            <label><input type="radio" name="region" value="6"><span>Region 6<small>middle</small></span></label>
+            <label><input type="radio" name="region" value="17"><span>Region 17<small>hardest hit</small></span></label>
+          </fieldset>
+          <fieldset class="seg"><legend>Floors</legend>
+            <label><input type="radio" name="floors" value="1"><span>1</span></label>
+            <label><input type="radio" name="floors" value="2" checked><span>2</span></label>
+            <label><input type="radio" name="floors" value="3"><span>3</span></label>
+            <label><input type="radio" name="floors" value="4"><span>4</span></label>
+            <label><input type="radio" name="floors" value="5"><span>5</span></label>
+          </fieldset>
+          <label class="sv__age"><span>Age <output data-age>20 years</output></span><input type="range" name="age" min="0" max="6" step="1" value="3"></label>
+          <fieldset class="seg seg--wrap"><legend>Foundation</legend>
+            <label><input type="radio" name="foundation" value="r" checked><span>Rubble and stone</span></label>
+            <label><input type="radio" name="foundation" value="u"><span>Undressed stone</span></label>
+            <label><input type="radio" name="foundation" value="w"><span>Wood</span></label>
+            <label><input type="radio" name="foundation" value="i"><span>Cement and brick</span></label>
+            <label><input type="radio" name="foundation" value="h"><span>Other</span></label>
+          </fieldset>
+          <fieldset class="seg seg--wrap"><legend>Roof</legend>
+            <label><input type="radio" name="roof" value="n" checked><span>Light bamboo</span></label>
+            <label><input type="radio" name="roof" value="q"><span>Heavy timber</span></label>
+            <label><input type="radio" name="roof" value="x"><span>Concrete slab</span></label>
+          </fieldset>
+          <fieldset class="seg seg--wrap"><legend>Walls</legend>
+            <label><input type="radio" name="mud" value="1" checked><span>Mud mortar and stone</span></label>
+            <label><input type="radio" name="mud" value="0"><span>Something else</span></label>
+          </fieldset>
+          <button class="btn btn--lime sv__go" type="submit">Shake it</button>
+          <div class="sv__result" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="game" id="game-bomb" role="dialog" aria-modal="true" aria-labelledby="bomb-title" hidden>
+    <div class="game__box" data-lenis-prevent>
+      <div class="game__top">
+        <p class="meta">My first game, Python 2025 · <a class="und" href="https://github.com/CalyPx/Bomb-dodger" target="_blank" rel="noopener">original source</a></p>
+        <button class="btn btn--line game__close" type="button">Close</button>
+      </div>
+      <h2 class="game__title" id="bomb-title">Bomb Dodger</h2>
+      <div class="bd">
+        <div class="bd__board">
+          <canvas tabindex="0" aria-label="Bomb Dodger board. Use W A S D or the arrow keys to move."></canvas>
+          <div class="game__over">
+            <p class="game__over-title" data-bomb-title>Bomb Dodger</p>
+            <p data-bomb-note>Dodge every bomb. Each one that leaves the board is a point.</p>
+            <button class="btn btn--lime" type="button" data-bomb-start>Start</button>
+          </div>
+        </div>
+        <div class="bd__side">
+          <p class="bd__score"><span class="meta">Score</span><b data-bomb-score>0</b></p>
+          <p class="bd__score"><span class="meta">Best</span><b data-bomb-best>0</b></p>
+          <p class="bd__keys"><span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span> or arrow keys to move. On a phone, drag on the board.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pal" role="dialog" aria-modal="true" aria-label="Jump to" hidden>
+    <div class="pal__box">
+      <label class="vh" for="pal-q">Jump to a project or section</label>
+      <input class="pal__q" id="pal-q" type="text" placeholder="Jump to a project or section" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="pal-list">
+      <ul class="pal__list" id="pal-list" role="listbox" data-lenis-prevent></ul>
+      <p class="pal__foot"><span>↑ ↓ to move</span><span>Enter to open</span><span>Esc to close</span></p>
+    </div>
+  </div>
+</body>
+</html>
