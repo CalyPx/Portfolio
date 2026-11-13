@@ -1,0 +1,121 @@
+<!doctype html>
+<!-- Dev-only: the project covers are designed here and photographed into public/covers by scripts/covers.mjs -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script type="module">
+  import '@fontsource-variable/geist'
+  import '@fontsource-variable/geist-mono'
+  import '@fontsource-variable/anek-devanagari'
+</script>
+<style>
+  :root { --ink: #0d0d0c; --paper: #efede6; --lime: #d7ff3e; --grey: #b9b7ae; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #777; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px; font-family: 'Geist Variable', 'Anek Devanagari Variable', sans-serif; }
+  .cover { position: relative; width: 800px; height: 1000px; overflow: hidden; background: var(--bg); color: var(--fg); }
+  .cover::after { content: ''; position: absolute; inset: 0; opacity: .22; mix-blend-mode: multiply; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.2 -.25'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .cover.dark::after { mix-blend-mode: screen; opacity: .12; filter: invert(1); }
+  .top { position: absolute; left: 44px; right: 44px; top: 40px; display: flex; justify-content: space-between; font: 500 22px 'Geist Mono Variable', monospace; }
+  .name { position: absolute; left: 40px; right: 40px; bottom: 34px; font-weight: 800; font-size: 150px; line-height: .84; letter-spacing: -.06em; }
+  .name small { display: block; margin-bottom: 22px; font: 500 22px/1.3 'Geist Mono Variable', monospace; letter-spacing: 0; }
+  svg { position: absolute; left: 0; top: 0; width: 800px; height: 1000px; }
+  .big { position: absolute; font-weight: 800; letter-spacing: -.06em; line-height: 1; white-space: nowrap; }
+
+  /* A cover with a generated picture behind it: the drawing steps aside and the type shrinks to a caption
+     so it never covers the object. Light pictures keep ink type; dark ones get paper type and a soft floor. */
+  .cover.has-photo { color: var(--fg); background: var(--bg) var(--photo) center / cover no-repeat; }
+  .cover.has-photo.dark, .cover.has-photo[data-photo='dark'] { color: var(--paper); }
+  .cover.has-photo svg, .cover.has-photo .big { display: none; }
+  .cover.has-photo.dark::before, .cover.has-photo[data-photo='dark']::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,13,12,.7) 0%, rgba(13,13,12,0) 30%); }
+  .cover.has-photo::after { display: none; }
+  .cover.has-photo .top { color: inherit; top: 40px; left: 44px; right: 44px; }
+  .cover.has-photo .name { font-size: 92px; line-height: .9; bottom: 38px; }
+  .cover.has-photo .name br { display: none; }
+  .cover.has-photo .name small { margin-bottom: 14px; }
+  .cover.has-photo .name [lang='ne'] { display: inline !important; font-size: 1em !important; line-height: 1 !important; margin-right: .18em; }
+</style>
+<script type="module">
+  // Any picture saved as incoming/<id>.png, .jpg or .webp replaces that cover's drawing.
+  const tryLoad = (src) => new Promise((ok) => { const i = new Image(); i.onload = () => ok(i.naturalWidth > 32 ? src : null); i.onerror = () => ok(null); i.src = src })
+  const jobs = [...document.querySelectorAll('.cover')].map(async (c) => {
+    for (const ext of ['png', 'jpg', 'jpeg', 'webp']) {
+      const src = await tryLoad(`/incoming/${c.id}.${ext}`)
+      if (src) { c.style.setProperty('--photo', `url(${src})`); c.classList.add('has-photo'); return }
+    }
+  })
+  window.coversReady = Promise.all(jobs)
+</script>
+</head>
+<body>
+
+<div class="cover" id="crash" style="--bg: var(--lime); --fg: var(--ink)">
+  <svg viewBox="0 0 800 1000">
+    <g fill="none" stroke="#0d0d0c" stroke-width="3"><circle cx="430" cy="400" r="150"/><circle cx="430" cy="400" r="230"/><circle cx="430" cy="400" r="320"/><circle cx="430" cy="400" r="420"/></g>
+    <g transform="rotate(-32 430 400)"><rect x="170" y="290" width="520" height="220" rx="110" fill="#0d0d0c"/><rect x="430" y="290" width="260" height="220" rx="0" fill="#efede6" clip-path="inset(0 0 0 0 round 0 110px 110px 0)"/><rect x="418" y="290" width="12" height="220" fill="#d7ff3e"/></g>
+  </svg>
+  <div class="top"><span>05</span><span>Road safety</span></div>
+  <div class="name"><small>Evidence, sealed on impact</small>Crash<br> Capsule</div>
+</div>
+
+<div class="cover dark" id="mul" style="--bg: var(--ink); --fg: var(--paper)">
+  <svg viewBox="0 0 800 1000">
+    <g fill="none" stroke="#efede6"><ellipse cx="400" cy="430" rx="90" ry="34" stroke-width="10"/><ellipse cx="400" cy="430" rx="180" ry="68" stroke-width="7"/><ellipse cx="400" cy="430" rx="280" ry="106" stroke-width="5"/><ellipse cx="400" cy="430" rx="390" ry="148" stroke-width="3"/><ellipse cx="400" cy="430" rx="510" ry="194" stroke-width="2"/></g>
+    <path d="M400 150 C 460 250 480 290 480 330 a80 80 0 0 1 -160 0 C 320 290 340 250 400 150Z" fill="#d7ff3e"/>
+  </svg>
+  <div class="top"><span>04</span><span>AI agents</span></div>
+  <div class="name"><small>Agents that watch drying springs</small><span lang="ne" style="letter-spacing:0; font-size: 190px; line-height: 1.15; display:block">मूल</span>Mul</div>
+</div>
+
+<div class="cover" id="sunuwa" style="--bg: var(--paper); --fg: var(--ink)">
+  <svg viewBox="0 0 800 1000">
+    <path d="M70 130 h660 a50 50 0 0 1 50 50 v330 a50 50 0 0 1 -50 50 h-380 l-130 120 v-120 h-150 a50 50 0 0 1 -50 -50 v-330 a50 50 0 0 1 50 -50z" fill="#0d0d0c" transform="translate(-10 10)"/>
+  </svg>
+  <div class="big" lang="ne" style="left: 0; right: 0; top: 215px; text-align: center; font-size: 190px; letter-spacing: 0; color: var(--lime)">सुनुवाइ</div>
+  <div class="top" style="color: var(--paper); top: 180px; left: 110px; right: 110px"><span>02</span><span>Civic tech</span></div>
+  <div class="name"><small>Civic complaints, routed</small>Sunuwa</div>
+</div>
+
+<div class="cover dark" id="quake" style="--bg: var(--ink); --fg: var(--paper)">
+  <svg viewBox="0 0 800 1000">
+    <polyline fill="none" stroke="#d7ff3e" stroke-width="7" stroke-linejoin="round" points="0,470 90,470 120,440 150,500 180,410 215,560 250,300 290,660 325,230 365,700 400,330 435,590 470,400 500,520 530,450 560,485 800,470"/>
+    <g fill="#efede6"><rect x="250" y="120" width="300" height="70"/><rect x="266" y="200" width="300" height="70"/><rect x="238" y="280" width="300" height="70"/></g>
+  </svg>
+  <div class="top"><span>01</span><span>Machine learning</span></div>
+  <div class="name"><small>74.45% accuracy on 260,601 buildings</small>Quake<br>Safe</div>
+</div>
+
+<div class="cover" id="prep" data-photo="dark" style="--bg: var(--grey); --fg: var(--ink)">
+  <svg viewBox="0 0 800 1000">
+    <g font-family="Geist Mono Variable, monospace" font-size="40" font-weight="500">
+      <g transform="translate(90 140)"><rect width="620" height="96" rx="48" fill="#efede6"/><circle cx="48" cy="48" r="26" fill="none" stroke="#0d0d0c" stroke-width="4"/><text x="100" y="62">A</text></g>
+      <g transform="translate(90 256)"><rect width="620" height="96" rx="48" fill="#0d0d0c"/><circle cx="48" cy="48" r="26" fill="#d7ff3e"/><path d="M36 48l9 9 16-18" fill="none" stroke="#0d0d0c" stroke-width="5"/><text x="100" y="62" fill="#efede6">B</text></g>
+      <g transform="translate(90 372)"><rect width="620" height="96" rx="48" fill="#efede6"/><circle cx="48" cy="48" r="26" fill="none" stroke="#0d0d0c" stroke-width="4"/><text x="100" y="62">C</text></g>
+      <g transform="translate(90 488)"><rect width="620" height="96" rx="48" fill="#efede6"/><circle cx="48" cy="48" r="26" fill="none" stroke="#0d0d0c" stroke-width="4"/><text x="100" y="62">D</text></g>
+    </g>
+  </svg>
+  <div class="top"><span>03</span><span>Education</span></div>
+  <div class="name"><small>Entrance-exam practice, free</small>Nepal<br>Prep</div>
+</div>
+
+<div class="cover" id="learn" style="--bg: var(--paper); --fg: var(--ink)">
+  <svg viewBox="0 0 800 1000">
+    <ellipse cx="400" cy="400" rx="350" ry="120" fill="none" stroke="#0d0d0c" stroke-width="3" transform="rotate(-18 400 400)"/>
+    <g transform="translate(400 400)"><polygon points="0,-190 165,-95 0,0 -165,-95" fill="#d7ff3e"/><polygon points="-165,-95 0,0 0,190 -165,95" fill="#0d0d0c"/><polygon points="165,-95 0,0 0,190 165,95" fill="#b9b7ae"/></g>
+    <circle cx="716" cy="270" r="34" fill="#0d0d0c"/>
+  </svg>
+  <div class="top"><span>07</span><span>AR learning</span></div>
+  <div class="name"><small>Physics, in your own room</small>Learn<br>Scape</div>
+</div>
+
+<div class="cover dark" id="sajha" style="--bg: var(--ink); --fg: var(--paper)">
+  <svg viewBox="0 0 800 1000">
+    <path d="M300 110h200v170h170v200h-170v170h-200v-170h-170v-200h170z" fill="#efede6"/>
+    <circle cx="400" cy="380" r="62" fill="#d7ff3e"/>
+  </svg>
+  <div class="top"><span>06</span><span>Telehealth</span></div>
+  <div class="name"><small>Telehealth in two languages</small>Sajha<br>Doctor</div>
+</div>
+
+</body>
+</html>
