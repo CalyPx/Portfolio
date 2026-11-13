@@ -591,3 +591,84 @@ button { font: inherit; color: inherit; letter-spacing: inherit; background: non
   .sv__house { height: 26svh; width: auto; justify-self: center; }
   .sv__seis { height: 28px; }
 }
+
+/* Phone-only pieces ------------------------------------------------------------------------------ */
+.m-only, .strip__tag { display: none; }
+
+@media (max-width: 760px) {
+  /* the hero hint takes too much of a small screen */
+  .hero__hint { display: none; }
+
+  /* Work: a row of cards to swipe through */
+  .strips { display: flex; gap: 10px; padding-inline: var(--m); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--m); scrollbar-width: none; overscroll-behavior-x: contain; }
+  .strips::-webkit-scrollbar { display: none; }
+  .strip { flex: 0 0 84%; scroll-snap-align: start; display: flex; }
+  .strip__btn { display: flex; flex-direction: column; }
+  .strip__img, .strip.is-on .strip__img { height: auto; aspect-ratio: 5 / 4; object-position: 50% 35%; }
+  .strip__label, .strip.is-on .strip__label { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: baseline; padding: 14px 14px 0; background: none; }
+  .strip__label b { font-size: 1.7rem; letter-spacing: -0.045em; }
+  .strip__tag { display: block; grid-column: 1 / -1; font-family: var(--sans); font-style: normal; font-size: 0.95rem; color: var(--mute); }
+  .strip__info, .strip.is-on .strip__info { display: grid; flex: 1; gap: 14px; padding: 12px 14px 16px; }
+  .strip__info > .chips, .strip__problem { display: none; }
+  .strip__facts > span:first-child { display: none; }
+  .strip__facts { padding-top: 12px; }
+  .strip__go { justify-self: stretch; text-align: center; }
+  .work__count { display: flex; align-items: baseline; gap: 6px; margin: 14px var(--m) 0; font-family: var(--mono); font-size: 0.8rem; color: var(--mute); }
+  .work__count b { color: var(--ink); font-weight: 600; }
+  .work__count span { margin-left: auto; }
+  .work__count span::after { content: ' →'; }
+
+  /* Results: one short line each; a tap opens the story */
+  .tiles { gap: 6px; }
+  .tile { grid-template-columns: 4.4rem minmax(0, 1fr) auto; grid-template-rows: none; grid-template-areas: 'big top plus' 'big what plus' 'big where plus' 'more more more'; column-gap: 14px; row-gap: 2px; align-items: center; padding: 14px; cursor: pointer; }
+  .tile__top { grid-area: top; justify-content: flex-start; flex-wrap: wrap; gap: 0 6px; font-size: 0.72rem; color: var(--mute); }
+  .tile__top span { white-space: nowrap; }
+  .tile__top span:empty { display: none; }
+  .tile__top span + span::before { content: '· '; }
+  .tile { grid-template-columns: 5.4rem minmax(0, 1fr) auto; }
+  .tile__big, .tile__big--two { grid-area: big; margin: 0; font-size: 2.1rem; line-height: 0.9; white-space: nowrap; }
+  .tile__big--two { font-size: 1.05rem; line-height: 1; letter-spacing: -0.03em; }
+  .tile__what { grid-area: what; font-size: 1.1rem; }
+  .tile__where { grid-area: where; margin: 0; font-size: 0.88rem; color: var(--mute); }
+  .tile::after { content: '+'; grid-area: plus; font-family: var(--mono); font-size: 1.3rem; transition: rotate var(--mid) var(--ease); }
+  .tile__more, .tile:hover .tile__more, .tile:focus-within .tile__more { grid-area: more; max-height: 0; opacity: 0; margin-top: 0; }
+  .tile:hover, .tile:focus-within { background: var(--paper); color: var(--ink); }
+  .tile:hover .tile__big, .tile:focus-within .tile__big { color: var(--ink); translate: none; }
+  .tile--next:hover .tile__big, .tile--next:focus-within .tile__big { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+  .tile:hover .tile__go, .tile:focus-within .tile__go { color: inherit; }
+  .tile.is-open { background: var(--ink); color: var(--paper); }
+  .tile.is-open .tile__top, .tile.is-open .tile__where { color: rgba(238, 236, 229, 0.7); }
+  .tile.is-open .tile__big { color: var(--lime); }
+  .tile--next.is-open .tile__big { color: transparent; -webkit-text-stroke: 1.5px var(--lime); }
+  .tile.is-open::after { rotate: 45deg; color: var(--lime); }
+  .tile.is-open .tile__more { max-height: 12em; opacity: 1; margin-top: 12px; }
+  .tile.is-open .tile__go { color: var(--lime); }
+
+  /* Will it survive?: the whole house, not just its roof */
+  .arcade__art--quake svg { position: absolute; inset: 10% 0 4%; width: 100%; height: 86%; }
+
+  /* Menu: numbered, with a way to reach me at the bottom */
+  .bar__nav { counter-reset: nav; justify-content: flex-start; padding: 92px var(--m) 28px; font-size: 13vw; }
+  .bar__nav > a { counter-increment: nav; display: flex; align-items: baseline; gap: 14px; padding: 6px 0 8px; border-bottom: 1.5px solid var(--ink); }
+  .bar__nav > a::before { content: '0' counter(nav); font-family: var(--mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0; translate: 0 -0.9em; }
+  .bar__nav > a::after { content: '→'; align-self: center; margin-left: auto; font-size: 0.5em; font-weight: 500; transition: translate var(--fast) var(--ease); }
+  .bar__nav > a[aria-current='true']::after { content: '●'; font-size: 0.3em; translate: 0 -0.5em; }
+  .bar__nav > a.m-only { display: flex; }
+  .bar__nav > a, .bar__more { opacity: 0; translate: 0 30px; transition: opacity 300ms, translate 300ms var(--ease); }
+  .bar.is-open .bar__nav > a, .bar.is-open .bar__more { opacity: 1; translate: 0 0; transition: opacity 500ms var(--ease), translate 700ms var(--ease); }
+  .bar.is-open .bar__nav > a:nth-of-type(1) { transition-delay: 150ms; }
+  .bar.is-open .bar__nav > a:nth-of-type(2) { transition-delay: 200ms; }
+  .bar.is-open .bar__nav > a:nth-of-type(3) { transition-delay: 250ms; }
+  .bar.is-open .bar__nav > a:nth-of-type(4) { transition-delay: 300ms; }
+  .bar.is-open .bar__nav > a:nth-of-type(5) { transition-delay: 350ms; }
+  .bar.is-open .bar__more { transition-delay: 450ms; }
+  .bar__more { display: grid; gap: 14px; margin-top: auto; padding-top: 24px; font-family: var(--mono); font-size: 0.82rem; font-weight: 400; letter-spacing: 0; line-height: 1.4; }
+  .bar__open { display: flex; align-items: center; gap: 10px; }
+  .bar__open i { flex: none; width: 9px; height: 9px; background: var(--ink); animation: blink 1.6s steps(1) infinite; }
+  .bar__links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .bar__links a { display: grid; place-items: center; min-height: 44px; background: var(--ink); color: var(--lime); text-decoration: none; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .bar__nav > a, .bar__more { translate: none; transition: none; }
+  .bar__open i { animation: none; }
+}

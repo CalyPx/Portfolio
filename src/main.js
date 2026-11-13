@@ -15,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+const phone = () => window.innerWidth <= 760
 const wide = () => window.innerWidth > 1100   // below this the work strips are an accordion
 const $ = (s, el = document) => el.querySelector(s)
 const $$ = (s, el = document) => [...el.querySelectorAll(s)]
@@ -93,7 +94,7 @@ function work() {
     li.innerHTML = `
       <button class="strip__btn" type="button" data-cur="Open" aria-expanded="false" aria-label="${p.name}: ${p.tag}">
         <img class="strip__img" src="${cover(p)}" alt="" width="1200" height="1500" loading="lazy">
-        <span class="strip__label">${no(i)}<b>${p.short || p.name}</b></span>
+        <span class="strip__label">${no(i)}<b>${p.short || p.name}</b><em class="strip__tag">${p.tag}</em></span>
         <span class="strip__info">
           <span class="chips" role="list" data-cur=""><span role="listitem" class="is-key">${p.access}</span><span role="listitem">${p.kind}</span>${p.origin ? `<span role="listitem">${p.origin}</span>` : ''}</span>
           <span class="strip__main" data-cur="">
@@ -130,9 +131,16 @@ function work() {
     btn.addEventListener('pointerleave', () => clearTimeout(wait))
     btn.addEventListener('focus', () => show(i))
     // a closed strip opens on the first press; an open one goes to its case study
-    btn.addEventListener('click', (e) => { if (!li.classList.contains('is-on')) return show(i); openSheet(i, e) })
+    btn.addEventListener('click', (e) => { if (!li.classList.contains('is-on') && !phone()) return show(i); openSheet(i, e) })
   })
   show(0, true)
+  // phones: the work is a row of cards you swipe through, and the counter follows
+  const count = $('.work__count b')
+  box.addEventListener('scroll', () => {
+    if (!phone()) return
+    const w = strips[0].offsetWidth + 10
+    count.textContent = no(Math.min(strips.length - 1, Math.round(box.scrollLeft / w)))
+  }, { passive: true })
   if (!reduce) gsap.from(strips, { yPercent: 14, opacity: 0, duration: 1.1, stagger: 0.055, ease: 'expo.out', scrollTrigger: { trigger: box, start: 'top 84%', once: true } })
 }
 
@@ -140,6 +148,13 @@ function work() {
 function tiles() {
   $$('.tile').forEach((t, i) => {
     if (!$('a', t)) t.tabIndex = 0
+    // phones: tiles stay short, and a tap opens one
+    t.addEventListener('click', (e) => {
+      if (!phone() || e.target.closest('a')) return
+      const open = !t.classList.contains('is-open')
+      $$('.tile.is-open').forEach((o) => o.classList.remove('is-open'))
+      t.classList.toggle('is-open', open)
+    })
     t.addEventListener('pointerenter', (e) => { if (e.pointerType !== 'touch') sound.cue('tile', i) })
   })
   $$('[data-case]').forEach((a) => a.addEventListener('click', (e) => {
@@ -548,7 +563,7 @@ function bar() {
     if (!el.classList.contains('is-open')) return
     if (e.key === 'Escape') { toggle(false); menu.focus() }
     if (e.key === 'Tab') {   // keep focus inside the open phone menu
-      const f = [...$$('a', nav), menu], first = f[0], last = f[f.length - 1]
+      const f = [...$$('a', nav), menu].filter((a) => a.offsetParent), first = f[0], last = f[f.length - 1]
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
     }
   })
